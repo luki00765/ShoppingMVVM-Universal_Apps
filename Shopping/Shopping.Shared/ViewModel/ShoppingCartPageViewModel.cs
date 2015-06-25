@@ -12,40 +12,40 @@ using Shopping.Model;
 
 namespace Shopping.ViewModel
 {
-    public class ShoppingCartPageViewModel : INotifyPropertyChanged
-    {
+	public class ShoppingCartPageViewModel : INotifyPropertyChanged
+	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-	    private ObservableCollection<ShoppingCart> _shoppingCarts;
+		private ObservableCollection<ShoppingCart> _shoppingCarts;
 
-	    public ObservableCollection<ShoppingCart> ShoppingCarts
-	    {
+		public ObservableCollection<ShoppingCart> ShoppingCarts
+		{
 			get { return _shoppingCarts; }
-		    set
-		    {
-			    if (_shoppingCarts != value)
-			    {
-				    _shoppingCarts = value;
-				    OnPropertyChanged( () => ShoppingCarts );
-			    }
-		    }
-	    }
+			set
+			{
+				if (_shoppingCarts != value)
+				{
+					_shoppingCarts = value;
+					OnPropertyChanged(() => ShoppingCarts);
+				}
+			}
+		}
 
 		private void OnPropertyChanged<T>(Expression<Func<T>> propertySelector)
 		{
-			MemberExpression memberExpression = (MemberExpression) propertySelector.Body;
+			MemberExpression memberExpression = (MemberExpression)propertySelector.Body;
 			string propertyName = memberExpression.Member.Name;
 
-			if(PropertyChanged != null)
+			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-	    public ShoppingCartPageViewModel()
-	    {
-		    var shoppingCarts = Repository.GetShoppingCarts();
+		public ShoppingCartPageViewModel()
+		{
+			var shoppingCarts = Repository.GetShoppingCarts();
 			ShoppingCarts = new ObservableCollection<ShoppingCart>(shoppingCarts);
 			BackCommand = new DelegateCommand(BackAction, BackCanExecute);
-	    }
+		}
 
 		public ICommand BackCommand { get; set; }
 
@@ -58,5 +58,5 @@ namespace Shopping.ViewModel
 		{
 			((Frame)Window.Current.Content).GoBack();
 		}
-    }
+	}
 }
