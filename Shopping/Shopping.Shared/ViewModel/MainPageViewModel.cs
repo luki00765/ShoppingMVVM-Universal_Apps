@@ -10,22 +10,22 @@ using Shopping.View;
 
 namespace Shopping.ViewModel
 {
-    public class MainPageViewModel
-    {
-	    public string ContentProducts { get; private set; }
+	public class MainPageViewModel
+	{
+		public string ContentProducts { get; private set; }
 		public ICommand ProductsCommand { get; set; }
 
-	    public string ContentShoppingCarts { get; private set; }
+		public string ContentShoppingCarts { get; private set; }
 		public ICommand ShoppingCommand { get; set; }
 
-	    public MainPageViewModel()
-	    {
-		    ContentProducts = "Products";
+		public MainPageViewModel()
+		{
+			ContentProducts = "Products";
 			ProductsCommand = new DelegateCommand(ProductsAction, ProductsCanExecute);
 
-		    ContentShoppingCarts = "Shopping Carts";
+			ContentShoppingCarts = "Shopping Carts";
 			ShoppingCommand = new DelegateCommand(ShoppingCartsAction, ShoppingCartsCanExecute);
-	    }
+		}
 
 		private bool ShoppingCartsCanExecute(object obj)
 		{
@@ -44,7 +44,7 @@ namespace Shopping.ViewModel
 
 		private void ProductsAction(object obj)
 		{
-			((Frame) Window.Current.Content).Navigate(typeof (ProductsListPage));
+			((Frame)Window.Current.Content).Navigate(typeof(ProductsListPage));
 		}
-    }
+	}
 }

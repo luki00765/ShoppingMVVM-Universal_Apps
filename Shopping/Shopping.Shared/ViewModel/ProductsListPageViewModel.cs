@@ -12,24 +12,24 @@ using Shopping.Model;
 
 namespace Shopping.ViewModel
 {
-    public class ProductsListPageViewModel : INotifyPropertyChanged
-    {
+	public class ProductsListPageViewModel : INotifyPropertyChanged
+	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-	    private ObservableCollection<Product> _products;
+		private ObservableCollection<Product> _products;
 
-	    public ObservableCollection<Product> Products
-	    {
+		public ObservableCollection<Product> Products
+		{
 			get { return _products; }
-		    set
-		    {
-			    if (_products != value)
-			    {
-				    _products = value;
-				    OnPropertyChanged( () => Products );
-			    }
-		    }
-	    }
+			set
+			{
+				if (_products != value)
+				{
+					_products = value;
+					OnPropertyChanged(() => Products);
+				}
+			}
+		}
 
 		// funkcja pobiera nazwę propercji, nie trzeba jej podawać w stringu. Ma to na celu uniknięcie literówek w propertyName
 		// następnie wywołuje event PropertyChanged
@@ -38,16 +38,16 @@ namespace Shopping.ViewModel
 			MemberExpression memberExpression = (MemberExpression)propertySelector.Body;
 			string propertyName = memberExpression.Member.Name;
 
-			if(PropertyChanged != null)
+			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-	    public ProductsListPageViewModel()
-	    {
-		    var products = Repository.GetProducts();
+		public ProductsListPageViewModel()
+		{
+			var products = Repository.GetProducts();
 			Products = new ObservableCollection<Product>(products);
 			BackCommand = new DelegateCommand(BackAction, BackCanExecute);
-	    }
+		}
 
 		public ICommand BackCommand { get; set; }
 
@@ -60,5 +60,5 @@ namespace Shopping.ViewModel
 		{
 			((Frame)Window.Current.Content).GoBack();
 		}
-    }
+	}
 }
