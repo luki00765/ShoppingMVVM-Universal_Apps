@@ -18,15 +18,15 @@ using Shopping.ViewModel;
 
 namespace Shopping.View
 {
-    /// <summary>
-    /// Pusta strona, która może być używana samodzielnie, lub do której można nawigować wewnątrz ramki.
-    /// </summary>
-    public sealed partial class ShoppingCartPage : Page
-    {
-        public ShoppingCartPage()
-        {
-            this.InitializeComponent();
+	/// <summary>
+	/// Pusta strona, która może być używana samodzielnie, lub do której można nawigować wewnątrz ramki.
+	/// </summary>
+	public sealed partial class ShoppingCartPage : Page
+	{
+		public ShoppingCartPage()
+		{
+			this.InitializeComponent();
 			DataContext = new ShoppingCartPageViewModel();
-        }
-    }
+		}
+	}
 }
